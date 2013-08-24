@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <EditTextPreference
+        android:key="centerX"
+        android:title="Center x"
+        android:defaultValue="225.0"
+        android:summary="x-coordinate for clock"
+        android:numeric="decimal"
+        />
+    <EditTextPreference
+            android:key="centerY"
+            android:title="Center y"
+            android:summary="y-coordinate for clock"
+            android:defaultValue="300"
+            android:numeric="decimal"
+            />
+    <EditTextPreference
+            android:key="size"
+            android:title="Size"
+            android:summary="Size of Clock"
+            android:defaultValue="100.0"
+            android:numeric="decimal"
+            />
+    <EditTextPreference
+            android:key="stroke"
+            android:title="Arc Width"
+            android:summary="Width of arcs"
+            android:defaultValue="10.0"
+            android:numeric="decimal"
+            />
+    <EditTextPreference
+            android:key="refreshRate"
+            android:title="Refresh Rate"
+            android:summary="Seconds between screen updates"
+            android:defaultValue="600"
+            android:numeric="decimal"
+            />
+    <EditTextPreference
+            android:key="pollingInterval"
+            android:title="Polling Interval"
+            android:summary="Seconds"
+            android:defaultValue="600"
+            android:numeric="decimal"
+            />
+    <EditTextPreference
+            android:key="hours"
+            android:title="Hours"
+            android:summary="Time period for display"
+            android:defaultValue="6"
+            android:numeric="decimal"
+            />
+    <EditTextPreference
+        android:key="hoursAgo"
+        android:title="Hours Ago"
+        android:summary="The Beginning"
+        android:defaultValue="24"
+        android:numeric="decimal"
+        />
+
+    <EditTextPreference
+            android:key="callLimit"
+            android:title="Call Limit"
+            android:summary="Max number of calls"
+            android:defaultValue="50"
+            android:numeric="decimal"
+            />
+    <EditTextPreference
+            android:key="missedCallWidth"
+            android:title="Missed Call Width"
+            android:defaultValue="300"
+            android:numeric="decimal"
+            />
+    <SwitchPreference
+            android:key="showCalls"
+            android:summaryOn="Show Calls"
+            android:summaryOff="Hide Calls"
+        />
+    <SwitchPreference
+            android:key="showSms"
+            android:summaryOn="Show SMS"
+            android:summaryOff="Hide SMS"
+            />
+    <SwitchPreference
+            android:key="showBattery"
+            android:title="Collect Stats"
+            android:summaryOn="Collecting stats"
+            android:summaryOff="Not collecting stats"
+            />
+    <SwitchPreference
+            android:key="matchHours"
+            android:title="Match Hours"
+            android:summary="Only show first n hours"
+            />
+    <SwitchPreference
+            android:key="batteryStrengthService"
+            android:title="Battery Strength"
+            android:onClick="onClickBatteryService"
+            android:summaryOn="Running"
+            android:summaryOff="Stopped"
+            >
+            </SwitchPreference>
+
+</PreferenceScreen>
