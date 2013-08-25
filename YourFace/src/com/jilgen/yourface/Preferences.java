@@ -30,18 +30,17 @@ public class Preferences {
     }
 
     public Float getCenterX() {
-        Float centerX = Float.parseFloat(this.preferences.getString("centerX", "225.0"));
+        Float centerX = Float.parseFloat(this.preferences.getString( "centerX", "225.0" ));
         return centerX;
     }
 
     public Float getCenterY() {
-        Float centerY = Float.parseFloat(this.preferences.getString("centerY", "300.0"
-        ));
+        Float centerY = Float.parseFloat(this.preferences.getString( "centerY", "300.0" ));
         return centerY;
     }
 
     public Float getRadius() {
-        Float radius = Float.parseFloat(this.preferences.getString("size", "300.0"));
+        Float radius = Float.parseFloat(this.preferences.getString( "size", "300.0" ));
         return radius;
     }
 
