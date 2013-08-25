@@ -1,0 +1,40 @@
+<resources>
+
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <color name="white">#ffeeeeee</color>
+    <color name="face_circle">#ff222222</color>
+    <color name="text_dot">#ffbbffdd</color>
+    <color name="fade_dark">#bb1a1e85</color>
+    <color name="fade_light">#001a1e85</color>
+    <color name="face_background">#ff399200</color>
+    <color name="face_number">#ff222222</color>
+    <color name="face_outer_circle">#ffaaaaaa</color>
+    <color name="canary_yellow_solid">#FFFFFD00</color>
+    <color name="canary_yellow_thin">#77FFFD00</color>
+    <color name="magenta_solid">#FFC9007A</color>
+    <color name="magenta_thin">#AAC9007A</color>
+    <color name="deep_purple_solid">#FF3914AF</color>
+    <color name="deep_purple_thin">#33444444</color>
+    <color name="missed_call">#CC60D5AC</color>
+    <color name="incoming_call">#CC26527C</color>
+    <color name="call_gutter">#2926527C</color>
+    <color name="outgoing_call">#CC0C5AA6</color>
+    <color name="blue_tooth">#FF0a3d91</color>
+    <color name="blue_tooth_thin">#990a3d91</color>
+    <color name="grid_lines">#ccaaaaaa</color>
+    <color name="transparent">#00000000</color>
+    <color name="battery_strength_thin">#55C9007A</color>
+    <color name="battery_voltage_thin">#553914AF</color>
+    <color name="battery_temperature_thin">#550a3d91</color>
+    <color name="bytes_thin">#55C9007A</color>
+    <color name="proc_count_thin">#553914AF</color>
+    <color name="battery_strength">#FFC9007A</color>
+    <color name="battery_voltage">#FF3914AF</color>
+    <color name="battery_temperature">#FF0a3d91</color>
+    <color name="bytes">#FFC9007A</color>
+    <color name="proc_count">#FF3914AF</color>
+    <color name="grey_background">#FF8b9797</color>
+
+</resources>

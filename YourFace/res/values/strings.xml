@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Your Face</string>
+    <string name="appname">YourFace</string>
+    <string name="action_settings">General Settings</string>
+    <string name="service_settings">Service Settings</string>
+
+</resources>
