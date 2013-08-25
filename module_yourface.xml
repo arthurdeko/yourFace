@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="module_yourface" default="compile.module.yourface">
+  <dirname property="module.yourface.basedir" file="${ant.file.module_yourface}"/>
+  
+  <property name="module.jdk.home.yourface" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.yourface" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.yourface" value="${project.jdk.classpath}"/>
+  
+  <property name="compiler.args.yourface" value="${compiler.args}"/>
+  
+  <property name="yourface.output.dir" value="${module.yourface.basedir}/out/production/YourFace"/>
+  <property name="yourface.testoutput.dir" value="${module.yourface.basedir}/out/test/YourFace"/>
+  
+  <path id="yourface.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="yourface.module.production.classpath">
+    <path refid="${module.jdk.classpath.yourface}"/>
+  </path>
+  
+  <path id="yourface.runtime.production.module.classpath">
+    <pathelement location="${yourface.output.dir}"/>
+  </path>
+  
+  <path id="yourface.module.classpath">
+    <path refid="${module.jdk.classpath.yourface}"/>
+    <pathelement location="${yourface.output.dir}"/>
+  </path>
+  
+  <path id="yourface.runtime.module.classpath">
+    <pathelement location="${yourface.testoutput.dir}"/>
+    <pathelement location="${yourface.output.dir}"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.yourface">
+    <patternset refid="ignored.files"/>
+    <exclude name="out/**"/>
+    <exclude name="out/test/**"/>
+    <exclude name="out/test/YourFace/**"/>
+    <exclude name="out/res-cache/**"/>
+    <exclude name="out/res-cache/YourFace/**"/>
+    <exclude name="out/res-cache/YourFace/drawable-hdpi/**"/>
+    <exclude name="out/res-cache/YourFace/drawable-mdpi/**"/>
+    <exclude name="out/res-cache/YourFace/drawable-xhdpi/**"/>
+    <exclude name="out/res-cache/YourFace/drawable-xxhdpi/**"/>
+    <exclude name="out/production/**"/>
+    <exclude name="out/production/YourFace/**"/>
+    <exclude name="out/production/YourFace/bin/**"/>
+    <exclude name="out/production/YourFace/bin/res/**"/>
+    <exclude name="out/production/YourFace/bin/res/drawable-hdpi/**"/>
+    <exclude name="out/production/YourFace/bin/res/drawable-mdpi/**"/>
+    <exclude name="out/production/YourFace/bin/res/drawable-xhdpi/**"/>
+    <exclude name="out/production/YourFace/bin/res/drawable-xxhdpi/**"/>
+    <exclude name="out/production/YourFace/bin/dexedLibs/**"/>
+    <exclude name="out/production/YourFace/com/**"/>
+    <exclude name="out/production/YourFace/com/jilgen/**"/>
+    <exclude name="out/production/YourFace/com/jilgen/yourface/**"/>
+    <exclude name="out/production/YourFace/res/**"/>
+    <exclude name="out/production/YourFace/res/xml/**"/>
+    <exclude name="out/production/YourFace/res/menu/**"/>
+    <exclude name="out/production/YourFace/res/layout/**"/>
+    <exclude name="out/production/YourFace/res/values/**"/>
+    <exclude name="out/production/YourFace/res/drawable/**"/>
+    <exclude name="out/production/YourFace/res/values-v11/**"/>
+    <exclude name="out/production/YourFace/res/values-v14/**"/>
+    <exclude name="out/production/YourFace/res/drawable-hdpi/**"/>
+    <exclude name="out/production/YourFace/res/drawable-mdpi/**"/>
+    <exclude name="out/production/YourFace/res/drawable-xhdpi/**"/>
+    <exclude name="out/production/YourFace/res/values-sw600dp/**"/>
+    <exclude name="out/production/YourFace/res/drawable-xxhdpi/**"/>
+    <exclude name="out/production/YourFace/res/values-sw720dp-land/**"/>
+    <exclude name="out/production/YourFace/libs/**"/>
+    <exclude name="out/production/YourFace/.idea/**"/>
+    <exclude name="out/production/YourFace/.idea/scopes/**"/>
+    <exclude name="out/production/YourFace/.idea/copyright/**"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.yourface">
+    <patternset refid="compiler.excluded"/>
+    <patternset refid="excluded.from.module.yourface"/>
+  </patternset>
+  
+  <path id="yourface.module.sourcepath">
+    <dirset dir="${module.yourface.basedir}/../../workspace">
+      <include name="YourFace/gen"/>
+      <include name="YourFace/src"/>
+      <include name="YourFace"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.yourface" depends="compile.module.yourface.production,compile.module.yourface.tests" description="Compile module YourFace"/>
+  
+  <target name="compile.module.yourface.production" depends="register.custom.compilers" description="Compile module YourFace; production classes">
+    <mkdir dir="${yourface.output.dir}"/>
+    <javac2 destdir="${yourface.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.yourface}/javac">
+      <compilerarg line="${compiler.args.yourface}"/>
+      <bootclasspath refid="yourface.module.bootclasspath"/>
+      <classpath refid="yourface.module.production.classpath"/>
+      <src refid="yourface.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.yourface"/>
+    </javac2>
+    
+    <copy todir="${yourface.output.dir}">
+      <fileset dir="${module.yourface.basedir}/gen">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+        <patternset refid="excluded.from.compilation.yourface"/>
+      </fileset>
+      <fileset dir="${module.yourface.basedir}/src">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+        <patternset refid="excluded.from.compilation.yourface"/>
+      </fileset>
+      <fileset dir="${module.yourface.basedir}">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+        <patternset refid="excluded.from.compilation.yourface"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.yourface.tests" depends="register.custom.compilers,compile.module.yourface.production" description="compile module YourFace; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.yourface" description="cleanup module">
+    <delete dir="${yourface.output.dir}"/>
+    <delete dir="${yourface.testoutput.dir}"/>
+  </target>
+</project>
