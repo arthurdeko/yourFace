@@ -1,5 +1,7 @@
 package com.jilgen.yourface;
 
+import android.app.WallpaperManager;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
@@ -20,24 +22,15 @@ import android.widget.RelativeLayout;
 
 public class MainActivity extends Activity {
 
-	final static String TAG = "CF_Main";
-	public int hours = 6;
+	final static String TAG = "YF_Main";
     int _refreshRate = 5000;
 
-	public float radius = 150;
 	public Time now = new Time();
-    public float centerX;
-    public float centerY;
-    public boolean showSms = true;
-    public boolean showCalls = true;
     public DisplayMetrics screenMetrics;
     public float scale;
     public float screenHeight;
     public float screenWidth;
-    public float strokeWidth = 8.0f;
-    public long startDate;
-    public long secondsAgo;
-    public int missedCallWidth = 300;
+
     public YourFace application;
     public Preferences preferences;
     private RelativeLayout mainLayout;
@@ -94,6 +87,15 @@ public class MainActivity extends Activity {
         startActivity(intent);
     }
 
+    // Button to set the Wallpaper
+    public void setWallpaper(View view) {
+        Log.d( TAG, "Setting wallpaper");
+        Intent intent = new Intent(WallpaperManager.ACTION_CHANGE_LIVE_WALLPAPER);
+        intent.putExtra(WallpaperManager.EXTRA_LIVE_WALLPAPER_COMPONENT,
+                new ComponentName(this, FaceWallpaperService.class));
+        startActivity(intent);
+    }
+
     public Cursor getSmsMessages( String uri ) {
         Uri smsUri = Uri.parse(uri);
 
@@ -104,7 +106,8 @@ public class MainActivity extends Activity {
 
     }
 
-    public TimeArc makeSpiralArc(long date, int duration) {
+
+    public void makeSpiralArc(long date, int duration) {
 
         if ( duration <= 0 ) {
             duration = 30;
@@ -124,7 +127,9 @@ public class MainActivity extends Activity {
 
         //Log.d( TAG, "Shift: "+callShift+" radius: "+arcRadius+" now: "+nowSeconds+" time: "+startTimeSeconds );
 
-        TimeArc arc = new TimeArc( this );
+
+        /*
+        TimeArc arc = new TimeArc( );
         arc.setRadius( arcRadius / 2 );
         arc.setHours( this.preferences.getHours() );
         arc.setStartTime( startTime );
@@ -133,8 +138,11 @@ public class MainActivity extends Activity {
         arc.setCenterX( this.preferences.getCenterX() );
         arc.setCenterY( this.preferences.getCenterY() );
 
+
         return arc;
+        */
     }
+
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -146,6 +154,7 @@ public class MainActivity extends Activity {
     @Override
     public void onResume( ) {
         super.onResume();
+        this.updateScreen();
 
     }
 
@@ -159,8 +168,8 @@ public class MainActivity extends Activity {
 
         if ( this.preferences.getShowSms() ) {
             Log.d(TAG, "Making Sms arcs");
-            this.makeSmsArcs("content://sms/sent");
-            this.makeSmsArcs("content://sms/inbox");
+            //this.makeSmsArcs("content://sms/sent");
+            //this.makeSmsArcs("content://sms/inbox");
         }
 
         if (this.preferences.getShowCalls() ) {
@@ -190,14 +199,16 @@ public class MainActivity extends Activity {
                 if ( body != null ) {
                     messageLength = body.length();
                 }
+                /*
                 TimeArc smsArc=this.makeSpiralArc(date, messageLength);
                 if ( smsArc != null ) {
                     smsArc.setColor(getResources().getColor(R.color.deep_purple_thin));
                     smsArc.setStrokeWidth(messageLength);
                     smsArc.setStrokeCap(Paint.Cap.BUTT);
                     smsArc.setHours(this.preferences.getHours());
-                    this.mainLayout.addView(smsArc);
+                    //this.mainLayout.addView(smsArc);
                 }
+                */
             }
         }
     }
@@ -213,6 +224,7 @@ public class MainActivity extends Activity {
 
                 Log.d( TAG, "Battery Strengths: "+Integer.toString( strengths.getCount() ) );
 
+                /*
                 TimeArc strengthArc=this.makeSpiralArc(strengths.getLong(dateIndex), preferences.getPollingInterval() * 100);
 
                 if ( strengthArc != null ) {
@@ -220,9 +232,10 @@ public class MainActivity extends Activity {
                     strengthArc.setStrokeWidth(strengths.getInt(strengthIndex));
                     strengthArc.setStrokeCap(Paint.Cap.BUTT);
                     strengthArc.setHours(this.preferences.getHours());
-                    this.mainLayout.addView(strengthArc);
+                    //this.mainLayout.addView(strengthArc);
 
                 }
+                */
             }
         }
 
@@ -251,6 +264,7 @@ public class MainActivity extends Activity {
                 int type = Integer.parseInt( calls.getString(typeIndex ) );
                 int duration = calls.getInt( durationIndex );
 
+                /*
                 TimeArc callArc=this.makeSpiralArc( date, duration );
                 callArc.setStrokeCap( Paint.Cap.ROUND );
 
@@ -268,8 +282,8 @@ public class MainActivity extends Activity {
                     callArc.setColor( getResources().getColor(R.color.outgoing_call ) );
 
                 }
-
-                this.mainLayout.addView(callArc);
+                */
+                //this.mainLayout.addView(callArc);
 
             }
         }

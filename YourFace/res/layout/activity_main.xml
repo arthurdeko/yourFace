@@ -7,13 +7,6 @@
     android:background="@color/white"
     tools:context=".MainActivity"
 >
-<!--
-    <TextView
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/clock_face"
-        android:textColor="#ff000000"
-            android:gravity="top"/> -->
 
         <RelativeLayout
             android:id="@+id/main_layout"
@@ -28,8 +21,8 @@
         <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="diag"
-                android:onClick="clickDiagButton"
+                android:text="@string/set_wallpaper"
+                android:onClick="setWallpaper"
                 />
         </RelativeLayout>
         <RelativeLayout android:gravity="bottom"

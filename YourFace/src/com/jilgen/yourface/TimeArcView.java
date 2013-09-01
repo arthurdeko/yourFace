@@ -8,34 +8,36 @@ import android.graphics.RectF;
 import android.text.format.Time;
 import android.util.Log;
 import android.view.View;
+import android.widget.ScrollView;
+import android.widget.TextView;
 
 /**
  * TODO: document your custom view class.
  */
-public class TimeArc {
+public class TimeArcView extends View {
 
 	final static String TAG =  "YF_TimeArcView";
 	public int hours = 12;
 	public int minutes = hours * 60;
 	final static float DEGREES = 360;
-    public float centerX = 0.0f;
-    public float centerY = 0.0f;
-    public float radius = 200.0f;
-    public float diameter=radius * 2;
+	final float scale = getResources().getDisplayMetrics().density;
+	public float radius = 150 * scale;
+	public float centerX = 150 * scale;
+	public float centerY = 150 * scale;
+	public float diameter = radius * 2;
 	public Time startTime;
 	public Time endTime;
 	public float strokeWidth = 30.0f;
 	public int duration = 0;  // in seconds
 	public int color;
     public Paint.Cap strokeCap;
-    public Canvas canvas;
 
 	private final Paint arcPaint = new Paint();
 	public int startColor = 0xaa111111;
 	public int endColor = 0x001a1e85;
 
-	public TimeArc( Canvas canvas ) {
-        this.canvas = canvas;
+	public TimeArcView(Context context) {
+		super(context);
 		arcPaint.setStyle( Paint.Style.STROKE );
 		arcPaint.setColor( Color.WHITE );
 		arcPaint.setStrokeWidth( this.strokeWidth );
@@ -43,16 +45,21 @@ public class TimeArc {
 
 	}
 
+	@Override
+	protected void onDraw(Canvas canvas) {
+		this.place(canvas);
+		super.onDraw(canvas);
+
+	}
+
     public void place(Canvas canvas) {
         float degrees=0;
 
-        if ( this.canvas != null ) {
-            canvas.rotate(degrees - 90, this.centerX, this.centerY);
-            Log.d(TAG, "Degrees " + degrees);
+        canvas.rotate(degrees - 90, this.centerX, this.centerY);
+        Log.d(TAG, "Degrees " + degrees);
 
-            this.drawArc( this.canvas );
+        this.drawArc( canvas );
 
-        }
     }
 
     public void drawArc( Canvas canvas ) {
@@ -61,6 +68,7 @@ public class TimeArc {
         float sweepDeg = this.secondsToDegrees(this.duration);
 
         RectF oval = this.getOval();
+        this.setBackgroundColor( getResources().getColor(R.color.transparent) );
         canvas.drawArc( oval, startDeg, sweepDeg, false, arcPaint );
     }
 

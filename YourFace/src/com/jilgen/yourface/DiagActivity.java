@@ -230,7 +230,7 @@ public class DiagActivity extends Activity {
 
     public void makePhoneGutter() {
 
-        TimeArc gutterArc = new TimeArc( this );
+        TimeArcView gutterArc = new TimeArcView( this );
         gutterArc.setRadius( DiagActivity.RING_PHONE );
         gutterArc.setStrokeWidth( this.preferences.getStrokeWidth() );
         gutterArc.setDuration( this.preferences.getHours() * 3600000 );
@@ -243,7 +243,7 @@ public class DiagActivity extends Activity {
     }
 
     public void makeGridRing( float radius, int color ) {
-        TimeArc arc = new TimeArc(this);
+        TimeArcView arc = new TimeArcView(this);
 
         arc.setColor( getResources().getColor( R.color.grid_lines ) );
         arc.setHours( this.preferences.getHours() );
@@ -287,7 +287,7 @@ public class DiagActivity extends Activity {
             this.legend.append( ringName+": "+dataPoints.size()+" Min: "+min+" Delta: "+delta+"\n" );
             Log.d( TAG, ringName+": "+dataPoints.size()+" Min: "+min+" Delta: "+delta+"\n" );
 
-            IntensityArc arc = new IntensityArc( this );
+            IntensityArcView arc = new IntensityArcView( this );
 
             arc.data = dataPoints;
             arc.setRadius( ringRadius );
@@ -323,7 +323,7 @@ public class DiagActivity extends Activity {
                 int type = Integer.parseInt( calls.getString(typeIndex) );
                 int duration = calls.getInt( durationIndex );
 
-                TimeArc callArc=this.makeRingArc(date, duration, DiagActivity.RING_PHONE);
+                TimeArcView callArc=this.makeRingArc(date, duration, DiagActivity.RING_PHONE);
                 callArc.setStrokeCap( Paint.Cap.ROUND );
 
                 if ( type == CallLog.Calls.MISSED_TYPE) {
@@ -362,7 +362,7 @@ public class DiagActivity extends Activity {
                     start = date;
                 } else if ( state == 0 && start > 0 ) {
                     duration = (int) ( date - start );
-                    TimeArc arc = makeRingArc( date, duration, DiagActivity.RING_BLUETOOTH );
+                    TimeArcView arc = makeRingArc( date, duration, DiagActivity.RING_BLUETOOTH );
                     arc.setColor(getResources().getColor( R.color.blue_tooth ));
                     arc.setStrokeWidth(15.0f);
 
@@ -375,12 +375,12 @@ public class DiagActivity extends Activity {
 
     }
 
-    public TimeArc makeIntensityArc( long date, long duration, float ringRadius, float ringWidth ) {
+    public TimeArcView makeIntensityArc( long date, long duration, float ringRadius, float ringWidth ) {
 
         Time startTime = new Time();
         startTime.set(date);
 
-        TimeArc arc = new TimeArc( this );
+        TimeArcView arc = new TimeArcView( this );
         arc.setRadius( ringRadius );
         arc.setHours(this.preferences.getHours());
         arc.setStartTime( startTime );
@@ -392,7 +392,7 @@ public class DiagActivity extends Activity {
         return arc;
     }
 
-    public TimeArc makeRingArc(long date, int duration, float ringRadius ) {
+    public TimeArcView makeRingArc(long date, int duration, float ringRadius ) {
 
         if ( duration <= 0 ) {
             duration = 30;
@@ -401,7 +401,7 @@ public class DiagActivity extends Activity {
         Time startTime = new Time();
         startTime.set(date);
 
-        TimeArc arc = new TimeArc( this );
+        TimeArcView arc = new TimeArcView( this );
         arc.setRadius( ringRadius );
         arc.setHours( this.preferences.getHours() );
         arc.setStartTime( startTime );

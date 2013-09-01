@@ -5,5 +5,6 @@
     <string name="appname">YourFace</string>
     <string name="action_settings">General Settings</string>
     <string name="service_settings">Service Settings</string>
+    <string name="set_wallpaper">Set Wallpaper</string>
 
 </resources>
